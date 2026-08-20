@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_text_field.dart';
-import 'signup_screen.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final nameController = TextEditingController();
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
+    final confirmController = TextEditingController();
     final formKey = GlobalKey<FormState>();
 
     return Scaffold(
@@ -23,12 +24,18 @@ class LoginScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 28.42),
                 Center(child: Image.asset("assets/images/carrot.png")),
-                const SizedBox(height: 100.2),
-                const Text("Login",
+                const SizedBox(height: 60),
+                const Text("Sign Up",
                     style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600, color: Color(0xff181725))),
                 const SizedBox(height: 15),
-                const Text("Enter your email and password",
+                const Text("Create your account",
                     style: TextStyle(fontSize: 16, color: Color(0xff7C7C7C))),
+                const SizedBox(height: 30),
+                CustomTextField(
+                  label: "Name",
+                  controller: nameController,
+                  validator: (value) => value == null || value.isEmpty ? "Name required" : null,
+                ),
                 const SizedBox(height: 30),
                 CustomTextField(
                   label: "Email",
@@ -50,19 +57,21 @@ class LoginScreen extends StatelessWidget {
                     return null;
                   },
                 ),
-                const SizedBox(height: 20),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: const Text("Forgot Password?", style: TextStyle(color: Color(0xff181725))),
-                  ),
+                const SizedBox(height: 30),
+                CustomTextField(
+                  label: "Confirm Password",
+                  obscure: true,
+                  controller: confirmController,
+                  validator: (value) {
+                    if (value != passwordController.text) return "Passwords do not match";
+                    return null;
+                  },
                 ),
                 const SizedBox(height: 30),
                 InkWell(
                   onTap: () {
                     if (formKey.currentState!.validate()) {
-                      debugPrint("Login successful");
+                      debugPrint("Sign Up successful");
                     }
                   },
                   child: Container(
@@ -72,24 +81,10 @@ class LoginScreen extends StatelessWidget {
                       color: const Color(0xff53B175),
                     ),
                     child: const Center(
-                      child: Text("Log In",
+                      child: Text("Sign Up",
                           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white)),
                     ),
                   ),
-                ),
-                const SizedBox(height: 25),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Don't have an account? ", style: TextStyle(fontWeight: FontWeight.w600)),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => const SignUpScreen()));
-                      },
-                      child: const Text("Signup",
-                          style: TextStyle(fontWeight: FontWeight.w600, color: Color(0xff53B175))),
-                    ),
-                  ],
                 ),
               ],
             ),
