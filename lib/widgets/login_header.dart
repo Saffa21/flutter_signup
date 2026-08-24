@@ -4,13 +4,11 @@ class LoginHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      "Login", 
+      "Login",
       style: TextStyle(
-        fontFamily: "Gilroy",
-        fontWeight: FontWeight.w600, 
-        fontSize: 26,                
-        height: 29 / 26,             
-        color: Color(0xFF181725),    
+        fontSize: 30, // ← انسخي الحجم من Figma
+        fontWeight: FontWeight.bold,
+        color: Colors.black, // ← انسخي اللون من Figma
       ),
     );
   }
