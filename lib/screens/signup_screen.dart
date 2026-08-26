@@ -79,7 +79,7 @@ class _SignupScreenState extends State<SignupScreen> {
               controller: emailController,
               decoration: InputDecoration(
                 hintText: "imshuvo97@gmail.com",
-                suffixIcon: Icon(Icons.check_circle, color: Color(0xFF53B175)), // صح أخضر من Figma
+                suffixIcon: Icon(Icons.check_circle, color: Color(0xFF53B175)), 
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(color: Color(0xFFE2E2E2)),
@@ -121,7 +121,7 @@ class _SignupScreenState extends State<SignupScreen> {
             CustomButton(
               text: "Sign Up",
               onPressed: () {
-                // هنا تكتبي التنقل للصفحة التالية
+                
               },
             ),
             SizedBox(height: 20),
@@ -139,7 +139,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pop(context); // يرجع لصفحة Login
+                    Navigator.pop(context); 
                   },
                   child: Text(
                     "Login",
@@ -147,7 +147,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       fontFamily: "Gilroy",
                       fontWeight: FontWeight.w600,
                       fontSize: 14,
-                      color: Color(0xFF53B175), // أخضر من Figma
+                      color: Color(0xFF53B175), 
                     ),
                   ),
                 ),

@@ -26,7 +26,7 @@ class DontHaveWidget extends StatelessWidget {
               fontFamily: "Gilroy",
               fontWeight: FontWeight.w600,
               fontSize: 14,
-              color: Color(0xFF53B175), // أخضر من Figma
+              color: Color(0xFF53B175), 
             ),
           ),
         ),

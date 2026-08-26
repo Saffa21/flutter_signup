@@ -6,9 +6,9 @@ class LoginHeader extends StatelessWidget {
     return Text(
       "Login",
       style: TextStyle(
-        fontSize: 30, // ← انسخي الحجم من Figma
+        fontSize: 30, 
         fontWeight: FontWeight.bold,
-        color: Colors.black, // ← انسخي اللون من Figma
+        color: Colors.black, 
       ),
     );
   }

@@ -10,10 +10,10 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFF53B175), // اللون من Figma
-        minimumSize: Size(364, 67),          // الحجم من Figma
+        backgroundColor: Color(0xFF53B175), 
+        minimumSize: Size(364, 67),          
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(19), // radius من Figma
+          borderRadius: BorderRadius.circular(19), 
         ),
       ),
       onPressed: onPressed,
