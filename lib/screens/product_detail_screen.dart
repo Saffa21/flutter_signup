@@ -30,7 +30,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 1. Header Image & Navigation Buttons Area
+              //  Header Image + Navigation Buttons Area
               Stack(
                 children: [
                   Container(
@@ -79,7 +79,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // 2. Product Name & Heart Icon
+                    //  Product Name + Heart Icon
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -112,14 +112,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
                     const SizedBox(height: 30),
 
-                    // 3. Counter & Price Section (تم التعديل هنا)
+                    
                     Row(
                       mainAxisAlignment: MainAxisAlignment.
                       spaceBetween,
                       children: [
                         Row(
                           children: [
-                            // أيقونة الناقص بدون مربع
+                            
                             GestureDetector(
                               onTap: () {
                                 if (quantity > 1) setState(() => quantity--);
@@ -132,7 +132,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                             const SizedBox(width: 15),
 
-                            // الرقم داخل المربع
+                            
                             Container(
                               width: 45.67,
                               height: 45.67,
@@ -153,7 +153,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                             const SizedBox(width: 15),
 
-                            // أيقونة الزائد بدون مربع
+                            
                             GestureDetector(
                               onTap: () => setState(() => quantity++),
                               child: const Icon(
@@ -181,7 +181,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     const SizedBox(height: 25),
                     const Divider(color: Color(0xB3E2E2E2), thickness: 1),
 
-                    // 4. Product Details Section
+                    //  Product Details Section
                     Theme(
                       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
                       child: ExpansionTile(
@@ -213,7 +213,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
                     const Divider(color: Color(0xB3E2E2E2), thickness: 1),
 
-                    // 5. Nutritons Section
+                    //  Nutritons Section
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 12.0),
                       child: Row(
@@ -252,7 +252,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
                     const Divider(color: Color(0xB3E2E2E2), thickness: 1),
 
-                    // 6. Review Section
+                    //  Review Section
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 12.0),
                       child: Row(
@@ -285,7 +285,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
                     const SizedBox(height: 20),
 
-                    // 7. Add To Basket Button
+                    //  Add To Basket Button
                     SizedBox(
                       width: double.infinity,
                       height: 67,
