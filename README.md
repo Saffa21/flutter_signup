@@ -1,3 +1,3 @@
-| Shop Screen 1 | Shop Screen 2 |
-| :-: | :-: |
-| <img src="https://github.com/user-attachments/assets/1a4f6807-45a9-4879-99f7-ca2119b94a66" width="250" /> | <img src="https://github.com/user-attachments/assets/eb809ffd-e603-4c20-ab51-2f07688c57c5" width="250" /> |
+| Detail Shop | Account | Shop 2 | Shop |
+| :-: | :-: | :-: | :-: |
+| <img src="https://github.com/user-attachments/assets/36e20b97-756e-43b9-b5b3-65f3dd3d548f" width="200" /> | <img src="https://github.com/user-attachments/assets/10a19ff4-699d-4313-825f-45c492ad47be" width="200" /> | <img src="https://github.com/user-attachments/assets/336fce19-c2bf-4486-b8f3-0c494223fcfd" width="200" /> | <img src="https://github.com/user-attachments/assets/93e8ef24-c079-4a88-9864-4f5d1a002f39" width="200" /> |
