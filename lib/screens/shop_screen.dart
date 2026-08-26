@@ -13,30 +13,30 @@ class ShopScreen extends StatefulWidget {
 class _ShopScreenState extends State<ShopScreen> {
   int _selectedIndex = 0;
 
-  // 🟢 التحكم في حركة البانر العلوي
+  
   final PageController _bannerController = PageController();
   int _currentBannerPage = 0;
   Timer? _bannerTimer;
 
-  // 🟢 قائمة صور البانر المتنقلة (Fresh Vegetables والصورة الثانية)
+ 
   final List<String> bannerImages = [
-    "assets/images/banner1.pag.png", // 👈 هنا مسار صورة البانر الأولى (Fresh Vegetables)
-    "assets/images/banner5.png",     // 👈 هنا حطي مسار الصورة الثانية للبانر
+    "assets/images/banner1.pag.png", 
+    "assets/images/banner5.png",     
   ];
 
-  // منتجات Exclusive Offer
+  //  Exclusive Offer
   final List<Map<String, dynamic>> exclusiveProducts = [
     {
       "name": "Organic Bananas",
       "unit": "7pcs, Priceg",
       "price": 4.99,
-      "image": "assets/images/banana.png", // 👈 هنا مسار صورة الموز
+      "image": "assets/images/banana.png", 
     },
     {
       "name": "Red Apple",
       "unit": "1kg, Priceg",
       "price": 4.99,
-      "image": "assets/images/pngfuel1.png", // 👈 هنا مسار صورة التفاح
+      "image": "assets/images/pngfuel1.png", 
     },
   ];
 
@@ -46,20 +46,20 @@ class _ShopScreenState extends State<ShopScreen> {
       "name": "Bell Pepper Red",
       "unit": "1kg, Priceg",
       "price": 2.99,
-      "image": "assets/images/banner4.png", // 👈 هنا حطي مسار صورة الفلفل الأحمر / البيبار
+      "image": "assets/images/banner4.png", 
     },
     {
       "name": "Ginger",
       "unit": "250g, Priceg",
       "price": 1.99,
-      "image": "assets/images/pngfuel 3.png", // 👈 هنا حطي مسار صورة الزنجبيل
+      "image": "assets/images/pngfuel 3.png", 
     },
   ];
 
   @override
   void initState() {
     super.initState();
-    // 🟢 تحريك الصورة كل 3 ثوانٍ أفقياً تلقائياً
+    
     _bannerTimer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
       if (_currentBannerPage < bannerImages.length - 1) {
         _currentBannerPage++;
@@ -112,7 +112,7 @@ class _ShopScreenState extends State<ShopScreen> {
 
               const SizedBox(height: 20),
 
-              // 🟢 البانر المتحرك (Slider)
+               
               Column(
                 children: [
                   SizedBox(
@@ -146,7 +146,7 @@ class _ShopScreenState extends State<ShopScreen> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  // النقاط التي توضح أي صورة معروضة حالياً
+                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(
@@ -240,7 +240,7 @@ class _ShopScreenState extends State<ShopScreen> {
     );
   }
 
-  // كارت المنتج
+  
   Widget _buildProductCard(Map<String, dynamic> product) {
     return GestureDetector(
       onTap: () {
