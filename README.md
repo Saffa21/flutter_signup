@@ -1,1 +1,4 @@
-<img width="757" height="1600" alt="tassk" src="https://github.com/user-attachments/assets/0834361c-fa41-482f-9598-07b20a543e39" />
+<img width="300" height="1600" alt="shop" src="https://github.com/user-attachments/assets/1a4f6807-45a9-4879-99f7-ca2119b94a66" />
+<img width="300" height="1600" alt="shop2" src="https://github.com/user-attachments/assets/eb809ffd-e603-4c20-ab51-2f07688c57c5" />
+
+
