@@ -1,17 +1,13 @@
-# flutter_application_3
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5b92d3eb-ba08-4a7d-8da0-275787c00a15" width="280" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/0f9dcd7-b2d7-4f1b-89c1-3d57ad5f88c9" width="280" />
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/26dbd67d-e732-446f-a803-0bdc018f849c" width="280" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/2ee9127c-fc86-4131-9499-db91453dcf65" width="280" />
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f3bed4dd-f8f3-407f-86d5-1401509801d3" width="280" />
+</p>
