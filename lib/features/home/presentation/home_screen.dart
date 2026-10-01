@@ -1,4 +1,4 @@
-import 'dart:io'; // أضفنا استيراد ملفات الـ File
+import 'dart:io'; 
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_colors.dart';
 import '../widgets/profile_card.dart';
@@ -8,12 +8,12 @@ import '../widgets/add_task_dialog.dart';
 
 class HomeScreen extends StatelessWidget {
   final String userName; 
-  final File? imageFile; // متغير لاستقبال الصورة
+  final File? imageFile; 
 
   const HomeScreen({
     Key? key, 
     required this.userName,
-    this.imageFile, // جعله اختياري في حال لم يختار المستخدم صورة
+    this.imageFile, 
   }) : super(key: key);
 
   @override
@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               
-              // تمرير الصورة إلى ProfileCard
+              // ProfileCard
               ProfileCard(
                 userName: userName,
                 imageFile: imageFile, 
