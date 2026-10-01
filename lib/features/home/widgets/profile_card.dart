@@ -1,31 +1,46 @@
+import 'dart:io'; // أضفنا استيراد ملفات الـ File
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_colors.dart';
 
 class ProfileCard extends StatelessWidget {
   final String userName;
+  final File? imageFile; // متغير لاستقبال الصورة
 
-  const ProfileCard({Key? key, this.userName = 'Ahmed'}) : super(key: key);
+  const ProfileCard({
+    Key? key, 
+    this.userName = 'Ahmed',
+    this.imageFile, // جعله اختيارياً
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // صورة البروفيسل الدائرية
+        // دائرة الصورة الشخصية
         Container(
           width: 50,
           height: 50,
           decoration: BoxDecoration(
             color: AppColors.primaryColor.withOpacity(0.2),
             shape: BoxShape.circle,
+            // إذا كانت الصورة موجودة يتم عرضها، وإلا تختفي وتظهر الأيقونة خلفها
+            image: imageFile != null
+                ? DecorationImage(
+                    image: FileImage(imageFile!),
+                    fit: BoxFit.cover,
+                  )
+                : null,
           ),
-          child: const Icon(
-            Icons.person,
-            color: AppColors.primaryColor,
-            size: 28,
-          ),
+          child: imageFile == null
+              ? const Icon(
+                  Icons.person,
+                  color: AppColors.primaryColor,
+                  size: 28,
+                )
+              : null,
         ),
         const SizedBox(width: 12),
-        // التحية واسم المستخدم
+        
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -48,7 +63,7 @@ class ProfileCard extends StatelessWidget {
           ],
         ),
         const Spacer(),
-        // أيقونة الإشعارات
+        
         Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(

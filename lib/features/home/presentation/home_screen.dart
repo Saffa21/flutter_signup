@@ -1,3 +1,4 @@
+import 'dart:io'; // أضفنا استيراد ملفات الـ File
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_colors.dart';
 import '../widgets/profile_card.dart';
@@ -7,8 +8,13 @@ import '../widgets/add_task_dialog.dart';
 
 class HomeScreen extends StatelessWidget {
   final String userName; 
+  final File? imageFile; // متغير لاستقبال الصورة
 
-  const HomeScreen({Key? key, required this.userName}) : super(key: key);
+  const HomeScreen({
+    Key? key, 
+    required this.userName,
+    this.imageFile, // جعله اختياري في حال لم يختار المستخدم صورة
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +27,15 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               
-              ProfileCard(userName: userName),
+              // تمرير الصورة إلى ProfileCard
+              ProfileCard(
+                userName: userName,
+                imageFile: imageFile, 
+              ),
               const SizedBox(height: 24),
-              
               
               const StatisticsCard(),
               const SizedBox(height: 24),
-              
               
               const Text(
                 'Today Tasks',
@@ -38,7 +46,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              
               
               Expanded(
                 child: ListView(

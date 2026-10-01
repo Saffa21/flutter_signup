@@ -27,7 +27,7 @@ class AddTaskDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            // حقل عنوان المهمة
+            
             const Text(
               'Task Title',
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.textDark),
@@ -46,7 +46,7 @@ class AddTaskDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            // حقل وصف المهمة
+            
             const Text(
               'Description',
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.textDark),
@@ -66,7 +66,7 @@ class AddTaskDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            // زر حفظ المهمة
+            
             AppButton(
               text: 'Save Task',
               onPressed: () {

@@ -13,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // الانتقال تلقائياً إلى شاشة البروفايل بعد 3 ثوانٍ
+    
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,

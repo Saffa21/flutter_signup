@@ -29,7 +29,7 @@ class TaskCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // الخط الملون الجانبي لكل مهمة
+          
           Container(
             width: 4,
             height: 40,
@@ -39,7 +39,7 @@ class TaskCard extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 12),
-          // تفاصيل المهمة (العنوان والتفاصيل)
+          
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +63,7 @@ class TaskCard extends StatelessWidget {
               ],
             ),
           ),
-          // حالة المهمة (Pending / Done)
+          // (Pending / Done)
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(

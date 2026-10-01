@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../home/presentation/home_screen.dart';
 
@@ -12,6 +14,58 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _nameController = TextEditingController();
   String _selectedLanguage = 'English';
+
+  File? _imageFile;
+  final ImagePicker _picker = ImagePicker();
+
+  void _showImageSourceActionSheet(BuildContext context, bool isArabic) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (BuildContext context) {
+        return SafeArea(
+          child: Wrap(
+            children: <Widget>[
+              ListTile(
+                leading: const Icon(
+                  Icons.camera_alt,
+                  color: AppColors.primaryColor,
+                ),
+                title: Text(isArabic ? 'الكاميرا' : 'Camera'),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  _pickImage(ImageSource.camera);
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.photo_library,
+                  color: AppColors.primaryColor,
+                ),
+                title: Text(isArabic ? 'المعرض (الاستوديو)' : 'Gallery'),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  _pickImage(ImageSource.gallery);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _pickImage(ImageSource source) async {
+    final XFile? pickedFile = await _picker.pickImage(source: source);
+
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +84,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: DropdownButton<String>(
                 value: _selectedLanguage,
                 underline: const SizedBox(),
-                icon: const Icon(Icons.language, color: AppColors.textDark),
+                icon: const Icon(
+                  Icons.language,
+                  color: AppColors.textDark,
+                ),
                 items: ['English', 'العربية'].map((String lang) {
                   return DropdownMenuItem<String>(
                     value: lang,
                     child: Text(
                       lang,
-                      style: const TextStyle(color: AppColors.textDark, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        color: AppColors.textDark,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   );
                 }).toList(),
@@ -56,20 +116,55 @@ class _ProfileScreenState extends State<ProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 20),
-                Container(
-                  width: 90,
-                  height: 90,
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryColor.withOpacity(0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.person,
-                    size: 50,
-                    color: AppColors.primaryColor,
+
+                GestureDetector(
+                  onTap: () =>
+                      _showImageSourceActionSheet(context, isArabic),
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: 90,
+                        height: 90,
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryColor.withOpacity(0.1),
+                          shape: BoxShape.circle,
+                          image: _imageFile != null
+                              ? DecorationImage(
+                                  image: FileImage(_imageFile!),
+                                  fit: BoxFit.cover,
+                                )
+                              : null,
+                        ),
+                        child: _imageFile == null
+                            ? const Icon(
+                                Icons.person,
+                                size: 50,
+                                color: AppColors.primaryColor,
+                              )
+                            : null,
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: const BoxDecoration(
+                            color: AppColors.primaryColor,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.camera_alt,
+                            size: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+
                 const SizedBox(height: 24),
+
                 Text(
                   isArabic ? 'إنشاء ملفك الشخصي' : 'Create Your Profile',
                   style: const TextStyle(
@@ -78,17 +173,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: AppColors.textDark,
                   ),
                 ),
+
                 const SizedBox(height: 8),
+
                 Text(
-                  isArabic ? 'أضف اسمك وصورة الحساب' : 'Add your name and profile picture',
+                  isArabic
+                      ? 'أضف اسمك وصورة الحساب'
+                      : 'Add your name and profile picture',
                   style: const TextStyle(
                     fontSize: 14,
                     color: AppColors.textGray,
                   ),
                 ),
+
                 const SizedBox(height: 40),
+
                 Align(
-                  alignment: isArabic ? Alignment.centerRight : Alignment.centerLeft,
+                  alignment: isArabic
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
                   child: Text(
                     isArabic ? 'الاسم الكامل' : 'Full Name',
                     style: const TextStyle(
@@ -98,13 +201,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                 ),
+
                 const SizedBox(height: 8),
+
                 TextField(
                   controller: _nameController,
                   textAlign: isArabic ? TextAlign.right : TextAlign.left,
                   decoration: InputDecoration(
-                    hintText: isArabic ? 'أدخل اسمك الكامل' : 'Enter your full name',
-                    hintStyle: const TextStyle(color: AppColors.textGray),
+                    hintText: isArabic
+                        ? 'أدخل اسمك الكامل'
+                        : 'Enter your full name',
+                    hintStyle: const TextStyle(
+                      color: AppColors.textGray,
+                    ),
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
@@ -113,7 +222,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                 ),
+
                 const Spacer(),
+
                 SizedBox(
                   width: double.infinity,
                   height: 50,
@@ -127,25 +238,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onPressed: () {
                       if (_nameController.text.trim().isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(isArabic ? 'الرجاء إدخال الاسم أولاً!' : 'Please enter your name first!')),
+                          SnackBar(
+                            content: Text(
+                              isArabic
+                                  ? 'الرجاء إدخال الاسم أولاً!'
+                                  : 'Please enter your name first!',
+                            ),
+                          ),
                         );
                         return;
                       }
-                      
-                      // الانتقال وإرسال الاسم الذي كتبه المستخدم
+
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomeScreen(userName: _nameController.text.trim()),
+                          builder: (context) => HomeScreen(
+                            userName: _nameController.text.trim(),
+                            imageFile: _imageFile,
+                          ),
                         ),
                       );
                     },
                     child: Text(
                       isArabic ? 'متابعة' : 'Continue',
-                      style: const TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
+
                 const SizedBox(height: 20),
               ],
             ),
