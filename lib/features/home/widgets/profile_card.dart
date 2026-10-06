@@ -1,29 +1,29 @@
-import 'dart:io'; // أضفنا استيراد ملفات الـ File
+import 'dart:io'; 
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_colors.dart';
 
 class ProfileCard extends StatelessWidget {
   final String userName;
-  final File? imageFile; // متغير لاستقبال الصورة
+  final File? imageFile; 
 
   const ProfileCard({
     Key? key, 
     this.userName = 'Ahmed',
-    this.imageFile, // جعله اختيارياً
+    this.imageFile, 
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // دائرة الصورة الشخصية
+        
         Container(
           width: 50,
           height: 50,
           decoration: BoxDecoration(
             color: AppColors.primaryColor.withOpacity(0.2),
             shape: BoxShape.circle,
-            // إذا كانت الصورة موجودة يتم عرضها، وإلا تختفي وتظهر الأيقونة خلفها
+            
             image: imageFile != null
                 ? DecorationImage(
                     image: FileImage(imageFile!),

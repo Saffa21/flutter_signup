@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
             context: context,
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
-            builder: (context) => const AddTaskDialog(),
+            builder: (context) => const AddTaskScreen(),
           );
         },
       ),
