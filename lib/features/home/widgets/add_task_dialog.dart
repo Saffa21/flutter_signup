@@ -214,6 +214,28 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               'Choose Color',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
+            const SizedBox(height: 30),
+
+            // Next / Save Button
+            SizedBox(
+              width: double.infinity,
+              child: AppButton(
+                text: 'Next',
+                onPressed: () {
+                  // تجميع بيانات المهمة وإرجاعها للصفحة الرئيسية
+                  final newTask = {
+                    'title': titleController.text,
+                    'description': descController.text,
+                    'time': timeController.text,
+                    'date': dateController.text,
+                    'status': selectedStatus,
+                  };
+                  
+                  Navigator.pop(context, newTask);
+                },
+              ),
+            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),

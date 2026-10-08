@@ -6,7 +6,7 @@ import '../widgets/statistics_card.dart';
 import '../widgets/task_card.dart';
 import '../widgets/add_task_dialog.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   final String userName; 
   final File? imageFile; 
 
@@ -15,6 +15,36 @@ class HomeScreen extends StatelessWidget {
     required this.userName,
     this.imageFile, 
   }) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  // قائمة المهام التي تحتوي على المهام الافتراضية ويمكن إضافة مهام جديدة إليها
+  final List<Map<String, dynamic>> tasksList = [
+    {
+      'title': 'Flutter UI Design',
+      'subtitle': 'Complete the home screen layout',
+      'status': 'Pending',
+      'statusColor': Colors.orange,
+      'indicatorColor': Colors.orange,
+    },
+    {
+      'title': 'API Integration',
+      'subtitle': 'Connect login and profile endpoints',
+      'status': 'Done',
+      'statusColor': Colors.green,
+      'indicatorColor': Colors.green,
+    },
+    {
+      'title': 'Code Review',
+      'subtitle': 'Review clean architecture structure',
+      'status': 'Pending',
+      'statusColor': Colors.orange,
+      'indicatorColor': Colors.orange,
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +59,8 @@ class HomeScreen extends StatelessWidget {
               
               // ProfileCard
               ProfileCard(
-                userName: userName,
-                imageFile: imageFile, 
+                userName: widget.userName,
+                imageFile: widget.imageFile, 
               ),
               const SizedBox(height: 24),
               
@@ -48,30 +78,18 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 16),
               
               Expanded(
-                child: ListView(
-                  children: const [
-                    TaskCard(
-                      title: 'Flutter UI Design',
-                      subtitle: 'Complete the home screen layout',
-                      status: 'Pending',
-                      statusColor: Colors.orange,
-                      indicatorColor: Colors.orange,
-                    ),
-                    TaskCard(
-                      title: 'API Integration',
-                      subtitle: 'Connect login and profile endpoints',
-                      status: 'Done',
-                      statusColor: Colors.green,
-                      indicatorColor: Colors.green,
-                    ),
-                    TaskCard(
-                      title: 'Code Review',
-                      subtitle: 'Review clean architecture structure',
-                      status: 'Pending',
-                      statusColor: Colors.orange,
-                      indicatorColor: Colors.orange,
-                    ),
-                  ],
+                child: ListView.builder(
+                  itemCount: tasksList.length,
+                  itemBuilder: (context, index) {
+                    final task = tasksList[index];
+                    return TaskCard(
+                      title: task['title'] ?? '',
+                      subtitle: task['subtitle'] ?? '',
+                      status: task['status'] ?? 'Pending',
+                      statusColor: task['statusColor'] ?? Colors.orange,
+                      indicatorColor: task['indicatorColor'] ?? Colors.orange,
+                    );
+                  },
                 ),
               ),
             ],
@@ -82,13 +100,35 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.primaryColor,
         child: const Icon(Icons.add, color: AppColors.white),
-        onPressed: () {
-          showModalBottomSheet(
+        onPressed: () async {
+          // استقبال المهمة المضافة عند الضغط على زر Next في صفحة إضافة المهمة
+          final newTask = await showModalBottomSheet<Map<String, dynamic>>(
             context: context,
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
             builder: (context) => const AddTaskScreen(),
           );
+
+          if (newTask != null && newTask['title'] != null && newTask['title'].isNotEmpty) {
+            setState(() {
+              // تحديد لون الحالة بناءً على اختيار المستخدم
+              Color statusColor = Colors.orange;
+              if (newTask['status'] == 'Completed') {
+                statusColor = Colors.green;
+              } else if (newTask['status'] == 'In Progress') {
+                statusColor = Colors.blue;
+              }
+
+              // إضافة المهمة الجديدة إلى قائمة المهام لكي تظهر فوراً
+              tasksList.insert(0, {
+                'title': newTask['title'],
+                'subtitle': newTask['description'].isEmpty ? 'No description' : newTask['description'],
+                'status': newTask['status'],
+                'statusColor': statusColor,
+                'indicatorColor': statusColor,
+              });
+            });
+          }
         },
       ),
     );
