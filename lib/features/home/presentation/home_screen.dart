@@ -21,7 +21,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // قائمة المهام التي تحتوي على المهام الافتراضية ويمكن إضافة مهام جديدة إليها
+  
   final List<Map<String, dynamic>> tasksList = [
     {
       'title': 'Flutter UI Design',
@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: AppColors.primaryColor,
         child: const Icon(Icons.add, color: AppColors.white),
         onPressed: () async {
-          // استقبال المهمة المضافة عند الضغط على زر Next في صفحة إضافة المهمة
+          
           final newTask = await showModalBottomSheet<Map<String, dynamic>>(
             context: context,
             isScrollControlled: true,
@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           if (newTask != null && newTask['title'] != null && newTask['title'].isNotEmpty) {
             setState(() {
-              // تحديد لون الحالة بناءً على اختيار المستخدم
+              
               Color statusColor = Colors.orange;
               if (newTask['status'] == 'Completed') {
                 statusColor = Colors.green;
@@ -119,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 statusColor = Colors.blue;
               }
 
-              // إضافة المهمة الجديدة إلى قائمة المهام لكي تظهر فوراً
+             
               tasksList.insert(0, {
                 'title': newTask['title'],
                 'subtitle': newTask['description'].isEmpty ? 'No description' : newTask['description'],

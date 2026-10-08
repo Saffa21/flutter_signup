@@ -222,7 +222,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               child: AppButton(
                 text: 'Next',
                 onPressed: () {
-                  // تجميع بيانات المهمة وإرجاعها للصفحة الرئيسية
+
                   final newTask = {
                     'title': titleController.text,
                     'description': descController.text,
